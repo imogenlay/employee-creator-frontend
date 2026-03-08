@@ -1,0 +1,17 @@
+@use "../../scss/global" as g;
+@use "../../scss/queries" as q;
+@use "../../scss/mixins";
+
+.nav {
+  @include mixins.flex(row, flex-start, center, 1rem);
+}
+
+.current_link {
+  font-weight: 500;
+  color: g.$clr-grey-3;
+}
+
+.link {
+  font-weight: 500;
+  color: g.$clr-accent;
+}

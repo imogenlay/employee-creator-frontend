@@ -1,0 +1,26 @@
+@use "../../scss/global" as g;
+@use "../../scss/queries" as q;
+@use "../../scss/mixins";
+
+.hgroup {
+  padding: 0.5rem var(--inset);
+  background: white;
+
+  @include mixins.bg();
+  @include mixins.flex(row, flex-start, center, 0);
+
+  h1 {
+    flex: 1;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: g.$clr-accent;
+  }
+}
+
+.frame {
+  margin: 2rem calc(var(--inset) - 1rem);
+  padding: 1rem;
+  border-radius: 10px;
+
+  @include mixins.bg();
+}

@@ -1,0 +1,14 @@
+@mixin flex($direction, $justify, $align, $gap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin bg() {
+  background: white;
+  box-shadow:
+    0 4px 8px 0 #00000033,
+    0 6px 20px 0 #00000033;
+}

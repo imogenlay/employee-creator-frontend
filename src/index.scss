@@ -1,0 +1,44 @@
+@use "./scss/global" as g;
+@use "./scss/mixins";
+@use "./scss/queries" as q;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  font-family: "Zalando Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-synthesis: none;
+  font-size: 1rem;
+
+  line-height: 1.5;
+  text-decoration: none;
+  border-radius: 0;
+
+  overflow-x: visible;
+  scroll-behavior: smooth;
+
+  color: g.$clr-obsidian;
+}
+
+html {
+  width: 100vw;
+  min-height: 100%;
+}
+
+:root {
+  --main-width: min(90vw, 1200px);
+  --inset: calc((100vw - var(--main-width)) * 0.5);
+  --nav-bar-height: 2.5rem;
+}
+
+body,
+#root {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: g.$clr-background;
+}
