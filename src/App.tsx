@@ -9,9 +9,11 @@ import "./index.scss";
 import {
   PAGE_CALENDAR,
   PAGE_CREATE,
+  PAGE_EMPLOYEE,
   PAGE_HOME,
   PAGE_UPDATE,
 } from "./services/const";
+import EmployeePage from "./pages/EmployeePage/EmployeePage";
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
           <Route path={PAGE_CREATE} element={<CreateEmployeePage />} />
           <Route path={PAGE_UPDATE} element={<UpdateEmployeePage />} />
           <Route path={PAGE_CALENDAR} element={<CalendarPage />} />
+          <Route path={PAGE_EMPLOYEE} element={<EmployeePage />} />
         </Routes>
       </Frame>
     </BrowserRouter>

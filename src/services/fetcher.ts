@@ -2,9 +2,16 @@ export class QueryParams {
   private params: Record<string, string[]> = {};
   private empty: boolean = true;
 
-  add(queryName: string, queries: string[]) {
+  add(queryName: string, queries: string[] | string) {
+    if (typeof queries === "string") queries = [queries];
     this.params[queryName] = queries;
     this.empty = false;
+  }
+
+  addObject(queries: Record<string, any>) {
+    Object.keys(queries).forEach((query: string) => {
+      this.add(query, String(queries[query]));
+    });
   }
 
   get(queryName: string): string[] {
@@ -20,27 +27,40 @@ export class QueryParams {
   }
 }
 
-export type FetchOptions = {
-  method?: string;
-  headers?: Record<string, string>;
-  queryParams?: QueryParams;
-};
-
-export function get<T>(endpoint: string, queryParams: QueryParams) {
-  return fetcher<T>(endpoint, { method: "GET", queryParams });
+export function get<T>(endpoint: string, queryParams?: QueryParams) {
+  let options: FetchOptions = { method: "GET" };
+  if (queryParams) options.queryParams = queryParams;
+  return fetcher<T>(endpoint, options);
 }
 
-export function create<T>(endpoint: string, queryParams: QueryParams) {
-  return fetcher<T>(endpoint, { method: "POST", queryParams });
+export function create<T>(endpoint: string, body: any) {
+  return fetcher<T>(endpoint, {
+    method: "POST",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 }
 
-export function update<T>(endpoint: string, queryParams: QueryParams) {
-  return fetcher<T>(endpoint, { method: "PUT", queryParams });
+export function update<T>(endpoint: string, body: any) {
+  return fetcher<T>(endpoint, {
+    method: "PUT",
+    body: JSON.stringify(body),
+    headers: { "Content-Type": "application/json" },
+  });
 }
 
 export function remove<T>(endpoint: string, queryParams: QueryParams) {
   return fetcher<T>(endpoint, { method: "DELETE", queryParams });
 }
+
+export type FetchOptions = {
+  method?: string;
+  headers?: Record<string, string>;
+  body?: string;
+  queryParams?: QueryParams;
+};
 
 async function fetcher<T>(
   endpoint: string,
@@ -57,13 +77,13 @@ async function fetcher<T>(
     }
   }
 
-  console.log(import.meta.env.VITE_API_URL + endpoint + request);
   const response = await fetch(
     import.meta.env.VITE_API_URL + endpoint + request,
     {
       method: options.method,
       credentials: "include",
-      ...options.headers,
+      headers: options.headers,
+      body: options.body,
     },
   );
 
@@ -72,10 +92,16 @@ async function fetcher<T>(
   const hasBody = response.status !== 204 && isJsonResponse;
 
   if (!response.ok) {
-    const errBody = await response.json().catch(() => ({}));
-    console.log("error", errBody);
-    throw new Error(`[${response.status}]`, errBody.message || "Fetch error");
+    const error = await response.json().catch(() => ({}));
+    let errorMessage = `[${response.status}] ${error.message || "Fetch error"}`;
+    if (error.details) {
+      errorMessage += ":";
+      Object.values(error.details).forEach((value) => {
+        errorMessage += ` '${value}'`;
+      });
+    }
+    throw new Error(errorMessage);
   }
 
-  return hasBody ? (response.json() as T) : (null as T);
+  return hasBody ? (response.json() as Promise<T>) : (null as T);
 }

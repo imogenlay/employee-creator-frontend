@@ -1,5 +1,6 @@
+import type { EmployeeDto } from "../../utils/schema";
 import type { Sort } from "../const";
-import { get, QueryParams } from "../fetcher";
+import { get, create, QueryParams, update } from "../fetcher";
 
 export type EmployeeResponse = {
   id: number;
@@ -9,22 +10,74 @@ export type EmployeeResponse = {
   email: string;
   mobile: string;
   address: string;
-  isFullTime: boolean;
+  contractId: number;
+  contractName: string;
   hoursPerWeek: number;
   startDate: string;
   endDate: string;
 };
+
+export type FormFields = {
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  email: string;
+  mobile: string;
+  address: string;
+  contractId: string;
+  hoursPerWeek: string;
+  startDate: string;
+  endDate: string;
+};
+
+export const EMPTY_EMPLOYEE_FORM: FormFields = {
+  firstName: "",
+  middleName: "",
+  lastName: "",
+  email: "",
+  mobile: "",
+  address: "",
+  contractId: "",
+  hoursPerWeek: "",
+  startDate: "",
+  endDate: "",
+};
+
+export function responseToFormFields(employee: EmployeeResponse) {
+  return {
+    ...employee,
+    contractId: String(employee.contractId),
+    hoursPerWeek: String(employee.hoursPerWeek),
+  };
+}
 
 export type EmployeeQueryParams = {
   names: string[];
   sort: Sort;
 };
 
+export const getEmployee = (id: string): Promise<EmployeeResponse> => {
+  return get<EmployeeResponse>("/employees/" + id);
+};
+
 export const getEmployees = (
-  queryParams: EmployeeQueryParams,
+  employeeParams: EmployeeQueryParams,
 ): Promise<EmployeeResponse[]> => {
   const requestParams: QueryParams = new QueryParams();
-  requestParams.add("names", queryParams.names);
-  requestParams.add("sort", [queryParams.sort]);
+  requestParams.add("names", employeeParams.names);
+  requestParams.add("sort", employeeParams.sort);
   return get<EmployeeResponse[]>("/employees", requestParams);
+};
+
+export const createEmployee = (
+  employee: EmployeeDto,
+): Promise<EmployeeResponse> => {
+  return create<EmployeeResponse>("/employees", employee);
+};
+
+export const updateEmployee = (
+  id: string,
+  employee: EmployeeDto,
+): Promise<EmployeeResponse> => {
+  return update<EmployeeResponse>("/employees/" + id, employee);
 };

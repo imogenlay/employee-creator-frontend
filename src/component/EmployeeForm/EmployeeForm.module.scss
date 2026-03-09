@@ -1,0 +1,32 @@
+@use "../../scss/global" as g;
+@use "../../scss/queries" as q;
+@use "../../scss/mixins";
+
+.form {
+  @include mixins.flex(column, flex-start, stretch, 4px);
+}
+
+.form_item {
+  @include mixins.flex(row, flex-start, center, 1rem);
+}
+
+.label {
+  display: inline-block;
+  text-align: end;
+  width: 10rem;
+}
+
+.input {
+  flex: 1;
+}
+
+.form_error {
+  padding-left: 11rem;
+  color: g.$clr-red;
+  font-size: 0.75rem;
+}
+
+.button {
+  margin-top: 0.5rem;
+  margin-left: 11rem;
+}

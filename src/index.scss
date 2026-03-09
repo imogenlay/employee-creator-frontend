@@ -21,7 +21,7 @@
   overflow-x: visible;
   scroll-behavior: smooth;
 
-  color: g.$clr-obsidian;
+  color: g.$clr-grey-8;
 }
 
 html {
@@ -41,4 +41,23 @@ body,
   min-height: 100vh;
   overflow-x: hidden;
   background-color: g.$clr-background;
+}
+
+input,
+button {
+  border: 1px solid g.$clr-accent;
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+
+  &.error:not(:focus) {
+    border: 1px solid g.$clr-red;
+  }
+}
+
+button {
+  background-color: g.$clr-accent;
+  color: white;
+  margin: 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
 }

@@ -10,10 +10,9 @@ import EmployeeList from "../../component/EmployeeList/EmployeeList";
 export default function AllEmployeesPage() {
   const [employees, setEmployees] = useState<EmployeeResponse[] | null>(null);
   const [searchQueryParams, setSearchQueryParams] =
-    useState<EmployeeQueryParams | null>(null);
+    useState<EmployeeQueryParams>({ names: [], sort: "asc" });
 
   useEffect(() => {
-    if (searchQueryParams == null) return;
     getEmployees(searchQueryParams).then((data) => {
       setEmployees(data);
     });
