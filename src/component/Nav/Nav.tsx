@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router";
 import classes from "./Nav.module.scss";
-import { PAGE_CALENDAR, PAGE_CREATE, PAGE_HOME } from "../../services/const";
+import { PAGE_CREATE, PAGE_HOME } from "../../services/const";
 
 interface LinkDefinition {
   to: string;
@@ -13,7 +13,7 @@ export default function Nav() {
   const links: LinkDefinition[] = [
     { to: PAGE_HOME, text: "Home" },
     { to: PAGE_CREATE, text: "Create" },
-    { to: PAGE_CALENDAR, text: "Calendar" },
+    /* { to: PAGE_CALENDAR, text: "Calendar" },*/
   ];
 
   return (

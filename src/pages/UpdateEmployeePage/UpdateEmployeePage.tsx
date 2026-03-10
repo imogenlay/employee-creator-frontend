@@ -35,6 +35,7 @@ export default function UpdateEmployeePage() {
         <h2>
           Edit {employee.firstName} {employee.middleName} {employee.lastName}
         </h2>
+        <hr />
         <EmployeeForm
           buttonText="Update Employee"
           onSubmit={onSubmit}

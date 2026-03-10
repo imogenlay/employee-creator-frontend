@@ -4,6 +4,8 @@ import {
   type EmployeeResponse,
 } from "../../services/employee/employee-services";
 import { useEffect, useState } from "react";
+import classes from "./EmployeePage.module.scss";
+import { formatDate } from "../../utils/date";
 
 export default function EmployeePage() {
   const [employee, setEmployee] = useState<EmployeeResponse | null>();
@@ -20,16 +22,28 @@ export default function EmployeePage() {
     <div>
       {employee && (
         <>
-          <h2>
-            {employee.firstName} {employee.middleName} {employee.lastName}
-          </h2>
-          <p>{employee.email}</p>
-          {employee.mobile && <p>{employee.mobile}</p>}
-          {employee.address && <p>{employee.address}</p>}
-          <p>{employee.contractName}</p>
-          <p>Hours: {employee.hoursPerWeek}</p>
-          <p>Start: {employee.startDate}</p>
-          <p>End: {employee.endDate}</p>
+          <div className={classes.heading}>
+            <div className={classes.picture} />
+            <h2>
+              {employee.firstName} {employee.middleName} {employee.lastName}
+            </h2>
+            <p className={classes.email}>{employee.email}</p>
+          </div>
+          <hr />
+          <div className={classes.grid}>
+            <b>Mobile:</b>
+            <p>{employee.mobile}</p>
+            <b>Address:</b>
+            <p>{employee.address}</p>
+            <b>Contract:</b>
+            <p>{employee.contractName}</p>
+            <b>Hours:</b>
+            <p>{employee.hoursPerWeek}</p>
+            <b>Start Date:</b>
+            <p>{formatDate(employee.startDate)}</p>
+            <b>End Date:</b>
+            <p>{formatDate(employee.endDate)}</p>
+          </div>
         </>
       )}
     </div>

@@ -1,0 +1,28 @@
+@use "../../scss/global" as g;
+@use "../../scss/queries" as q;
+@use "../../scss/mixins";
+
+.heading {
+  @include mixins.flex(column, flex-start, center, 0);
+}
+
+.picture {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 6rem;
+  background-color: g.$clr-accent-light;
+  margin-bottom: 1rem;
+}
+
+.email {
+  color: g.$clr-grey-5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+
+  b {
+    font-weight: 600;
+  }
+}
