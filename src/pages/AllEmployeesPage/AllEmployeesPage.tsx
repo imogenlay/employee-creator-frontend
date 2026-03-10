@@ -27,7 +27,8 @@ export default function AllEmployeesPage() {
 
   return (
     <>
-      <h1>Employees</h1>
+      <h2>Employee List</h2>
+      <hr />
       <SearchBar text="Search" onSearch={onSearch} />
 
       {employees && <EmployeeList employees={employees} />}

@@ -1,0 +1,12 @@
+@use "../../scss/global" as g;
+@use "../../scss/queries" as q;
+@use "../../scss/mixins";
+
+.form {
+  @include mixins.flex(row, flex-start, center, 0.5rem);
+
+  input {
+    min-width: none;
+    flex: 0.5;
+  }
+}

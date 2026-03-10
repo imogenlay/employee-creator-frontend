@@ -32,7 +32,6 @@ html {
 :root {
   --main-width: min(90vw, 1200px);
   --inset: calc((100vw - var(--main-width)) * 0.5);
-  --nav-bar-height: 2.5rem;
 }
 
 body,
@@ -57,7 +56,46 @@ button {
 button {
   background-color: g.$clr-accent;
   color: white;
-  margin: 0.25rem;
   font-weight: 500;
   cursor: pointer;
+  transition: background-color 200ms ease;
+
+  &:hover {
+    border-color: g.$clr-accent-light;
+    background-color: g.$clr-accent-light;
+  }
+}
+
+h1 {
+  flex: 1;
+  font-weight: 600;
+  font-size: 1.75rem;
+  color: g.$clr-accent;
+
+  @include q.tablet {
+    font-size: 1.5rem;
+  }
+  @include q.phone {
+    font-size: 1rem;
+  }
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: g.$clr-accent;
+  text-align: center;
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: g.$clr-accent;
+}
+
+hr {
+  height: 1px;
+  border: none;
+  background-color: g.$clr-accent-light;
+  margin: 0.5rem 0 1rem 0;
 }

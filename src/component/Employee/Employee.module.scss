@@ -3,10 +3,15 @@
 @use "../../scss/mixins";
 
 .block {
-  margin: 1rem 0;
-  padding-top: 1rem;
-  border-top: 1px solid g.$clr-grey-3;
   @include mixins.flex(row, flex-start, flex-start, 0);
+
+  padding: 1rem;
+  border: 1px solid g.$clr-grey-3;
+  border-radius: 10px;
+
+  @include q.phone {
+    @include mixins.flex(column, flex-start, flex-start, 1rem);
+  }
 }
 
 .left {
@@ -14,12 +19,14 @@
 }
 
 .right {
-}
+  @include mixins.flex(column, flex-start, flex-start, 0.5rem);
+  @include q.phone {
+    @include mixins.flex(row, flex-start, flex-start, 0.5rem);
+  }
 
-.name {
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: g.$clr-accent;
+  button {
+    min-width: 6rem;
+  }
 }
 
 .email {
@@ -33,11 +40,4 @@
 
   @include mixins.bg();
   @include mixins.flex(row, flex-start, center, 0);
-
-  h1 {
-    flex: 1;
-    font-weight: 600;
-    font-size: 1.5rem;
-    color: g.$clr-accent;
-  }
 }

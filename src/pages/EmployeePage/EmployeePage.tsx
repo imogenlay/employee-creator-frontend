@@ -19,9 +19,18 @@ export default function EmployeePage() {
   return (
     <div>
       {employee && (
-        <h2>
-          {employee.firstName} {employee.email}
-        </h2>
+        <>
+          <h2>
+            {employee.firstName} {employee.middleName} {employee.lastName}
+          </h2>
+          <p>{employee.email}</p>
+          {employee.mobile && <p>{employee.mobile}</p>}
+          {employee.address && <p>{employee.address}</p>}
+          <p>{employee.contractName}</p>
+          <p>Hours: {employee.hoursPerWeek}</p>
+          <p>Start: {employee.startDate}</p>
+          <p>End: {employee.endDate}</p>
+        </>
       )}
     </div>
   );

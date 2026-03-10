@@ -15,5 +15,11 @@ export default function CreateEmployeePage() {
     });
   };
 
-  return <EmployeeForm buttonText="Create Employee" onSubmit={onSubmit} />;
+  return (
+    <>
+      <h2>Create New Employee</h2>
+      <hr />
+      <EmployeeForm buttonText="Create Employee" onSubmit={onSubmit} />
+    </>
+  );
 }

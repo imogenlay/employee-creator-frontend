@@ -1,4 +1,5 @@
 import { useState } from "react";
+import classes from "./SearchBar.module.scss";
 
 interface SearchBarProps {
   text: string;
@@ -13,11 +14,10 @@ export default function SearchBar({
   const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSearch(inputValue);
-    setInputValue("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={classes.form}>
       <input
         type="text"
         value={inputValue}

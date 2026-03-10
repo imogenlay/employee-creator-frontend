@@ -1,0 +1,8 @@
+@use "../../scss/global" as g;
+@use "../../scss/queries" as q;
+@use "../../scss/mixins";
+
+.list {
+  @include mixins.flex(column, flex-start, stretch, 1rem);
+  margin-top: 1rem;
+}
