@@ -13,4 +13,4 @@ export const FETCH_LOADING = 1;
 export const FETCH_SUCCESS = 2;
 export const FETCH_FAILURE = 3;
 
-export type Sort = "asc" | "desc";
+export type Sort = "ASC" | "DESC";

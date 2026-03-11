@@ -37,7 +37,7 @@ export const EMPTY_EMPLOYEE_FORM: FormFields = {
   email: "",
   mobile: "",
   address: "",
-  contractId: "",
+  contractId: "1",
   hoursPerWeek: "",
   startDate: "",
   endDate: "",
@@ -65,7 +65,7 @@ export const getEmployees = (
 ): Promise<EmployeeResponse[]> => {
   const requestParams: QueryParams = new QueryParams();
   requestParams.add("names", employeeParams.names);
-  requestParams.add("sort", employeeParams.sort);
+  requestParams.add("order", employeeParams.sort);
   return get<EmployeeResponse[]>("/employees", requestParams);
 };
 

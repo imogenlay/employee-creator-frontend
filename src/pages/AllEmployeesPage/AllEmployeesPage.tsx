@@ -10,7 +10,7 @@ import EmployeeList from "../../component/EmployeeList/EmployeeList";
 export default function AllEmployeesPage() {
   const [employees, setEmployees] = useState<EmployeeResponse[] | null>(null);
   const [searchQueryParams, setSearchQueryParams] =
-    useState<EmployeeQueryParams>({ names: [], sort: "asc" });
+    useState<EmployeeQueryParams>({ names: [], sort: "ASC" });
 
   useEffect(() => {
     getEmployees(searchQueryParams).then((data) => {
@@ -21,7 +21,7 @@ export default function AllEmployeesPage() {
   const onSearch = (searchQuery: string) => {
     setSearchQueryParams({
       names: searchQuery.split(" ").filter(Boolean),
-      sort: "asc",
+      sort: "ASC",
     });
   };
 

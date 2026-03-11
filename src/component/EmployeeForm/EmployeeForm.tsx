@@ -1,12 +1,16 @@
 import classes from "./EmployeeForm.module.scss";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createEmployeeSchema, type EmployeeDto } from "../../utils/schema";
 import FormItem from "./FormItem";
 import {
   EMPTY_EMPLOYEE_FORM,
   type FormFields,
 } from "../../services/employee/employee-services";
+import {
+  getContracts,
+  type ContractResponse,
+} from "../../services/employee/contract-services";
 
 type FormFieldErrors = Partial<Record<keyof FormFields, string>>;
 
@@ -23,6 +27,19 @@ export default function EmployeeForm({
 }: EmployeeFormProps) {
   const [form, setForm] = useState<FormFields>(defaultFields);
   const [errors, setErrors] = useState<FormFieldErrors>({});
+  const [contracts, setContracts] = useState<ContractResponse[] | null>(null);
+
+  useEffect(() => {
+    getContracts().then((response: ContractResponse[]) => {
+      response.forEach((a) => {
+        console.log(a.name, a.id);
+      });
+      const sorted = response; //response.sort((a, b) => a.id - b.id);
+      setContracts(sorted);
+      if (!form.contractId)
+        setForm((prev) => ({ ...prev, contractId: String(sorted[0].id) }));
+    });
+  }, []);
 
   const setField = (
     field: string,
@@ -55,28 +72,28 @@ export default function EmployeeForm({
   return (
     <form onSubmit={handleSubmit} noValidate className={classes.form}>
       <FormItem
-        label="First name:"
+        text="First name:"
         field="firstName"
         value={form.firstName}
         error={errors.firstName}
         setField={setField}
       />
       <FormItem
-        label="Middle name:"
+        text="Middle name:"
         field="middleName"
         value={form.middleName}
         error={errors.middleName}
         setField={setField}
       />
       <FormItem
-        label="Last name:"
+        text="Last name:"
         field="lastName"
         value={form.lastName}
         error={errors.lastName}
         setField={setField}
       />
       <FormItem
-        label="Email:"
+        text="Email:"
         field="email"
         type="email"
         value={form.email}
@@ -84,7 +101,7 @@ export default function EmployeeForm({
         setField={setField}
       />
       <FormItem
-        label="Mobile:"
+        text="Mobile:"
         field="mobile"
         type="tel"
         value={form.mobile}
@@ -92,22 +109,31 @@ export default function EmployeeForm({
         setField={setField}
       />
       <FormItem
-        label="Address:"
+        text="Address:"
         field="address"
         value={form.address}
         error={errors.address}
         setField={setField}
       />
+      {contracts &&
+        contracts.map((contract, i) => (
+          <FormItem
+            key={contract.id}
+            text={i === 0 ? "Contract:" : " "}
+            field="contractId"
+            name="contract"
+            type="radio"
+            value={contract.id}
+            checked={parseInt(form.contractId) === contract.id}
+            error={errors.contractId}
+            setField={setField}
+          >
+            {contract.name}
+          </FormItem>
+        ))}
+
       <FormItem
-        label="Contract ID:"
-        field="contractId"
-        type="number"
-        value={form.contractId}
-        error={errors.contractId}
-        setField={setField}
-      />
-      <FormItem
-        label="Hours per week:"
+        text="Hours per week:"
         field="hoursPerWeek"
         type="number"
         value={form.hoursPerWeek}
@@ -115,7 +141,7 @@ export default function EmployeeForm({
         setField={setField}
       />
       <FormItem
-        label="Start date:"
+        text="Start date:"
         field="startDate"
         type="date"
         value={form.startDate}
@@ -123,7 +149,7 @@ export default function EmployeeForm({
         setField={setField}
       />
       <FormItem
-        label="End date:"
+        text="End date:"
         field="endDate"
         type="date"
         value={form.endDate}
