@@ -34,10 +34,9 @@ export default function EmployeeForm({
       response.forEach((a) => {
         console.log(a.name, a.id);
       });
-      const sorted = response; //response.sort((a, b) => a.id - b.id);
-      setContracts(sorted);
+      setContracts(response);
       if (!form.contractId)
-        setForm((prev) => ({ ...prev, contractId: String(sorted[0].id) }));
+        setForm((prev) => ({ ...prev, contractId: String(response[0].id) }));
     });
   }, []);
 
@@ -136,6 +135,8 @@ export default function EmployeeForm({
         text="Hours per week:"
         field="hoursPerWeek"
         type="number"
+        min="1"
+        max="40"
         value={form.hoursPerWeek}
         error={errors.hoursPerWeek}
         setField={setField}

@@ -1,37 +1,42 @@
-import { useEffect, useState } from "react";
-import {
-  getEmployees,
-  type EmployeeQueryParams,
-  type EmployeeResponse,
-} from "../../services/employee/employee-services";
+import { useMemo, useState } from "react";
+import { type EmployeeQueryParams } from "../../services/employee/employee-services";
 import SearchBar from "../../component/SearchBar/SearchBar";
 import EmployeeList from "../../component/EmployeeList/EmployeeList";
+import type { Sort } from "../../services/const";
+import classes from "./AllEmployeesPage.module.scss";
 
 export default function AllEmployeesPage() {
-  const [employees, setEmployees] = useState<EmployeeResponse[] | null>(null);
-  const [searchQueryParams, setSearchQueryParams] =
-    useState<EmployeeQueryParams>({ names: [], sort: "ASC" });
+  const [namesFilter, setNamesFilter] = useState<string[]>([]);
+  const [sortFilter, setSortFilter] = useState<Sort>("ASC");
 
-  useEffect(() => {
-    getEmployees(searchQueryParams).then((data) => {
-      setEmployees(data);
-    });
-  }, [searchQueryParams]);
+  const searchQueryParams = useMemo<EmployeeQueryParams>(
+    () => ({
+      names: namesFilter,
+      sort: sortFilter,
+    }),
+    [namesFilter, sortFilter],
+  );
 
   const onSearch = (searchQuery: string) => {
-    setSearchQueryParams({
-      names: searchQuery.split(" ").filter(Boolean),
-      sort: "ASC",
-    });
+    setNamesFilter(searchQuery.split(" ").filter(Boolean));
+  };
+
+  const toggleSort = () => {
+    if (sortFilter === "ASC") setSortFilter("DESC");
+    else setSortFilter("ASC");
   };
 
   return (
     <>
       <h2>Employee List</h2>
       <hr />
-      <SearchBar text="Search" onSearch={onSearch} />
-
-      {employees && <EmployeeList employees={employees} />}
+      <div className={classes.filter_area}>
+        <SearchBar text="Search" onSearch={onSearch} />
+        <button onClick={toggleSort}>
+          Sort {sortFilter === "ASC" ? "A-Z" : "Z-A"}
+        </button>
+      </div>
+      <EmployeeList searchQueryParams={searchQueryParams} />
     </>
   );
 }

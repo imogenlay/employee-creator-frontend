@@ -1,0 +1,17 @@
+@use "../../scss/global" as g;
+@use "../../scss/queries" as q;
+@use "../../scss/mixins";
+
+.contract {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  @include mixins.flex(row, flex-start, center, 1rem);
+}
+
+.contract_name {
+  flex: 1;
+}
+
+.contract_full_time {
+  margin-right: 0.5rem;
+}

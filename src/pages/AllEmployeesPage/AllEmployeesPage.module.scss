@@ -1,0 +1,13 @@
+@use "../../scss/global" as g;
+@use "../../scss/queries" as q;
+@use "../../scss/mixins";
+
+.filter_area {
+  width: calc(100% - 1rem);
+  @include mixins.flex(row, flex-start, flex-start, 0.5rem);
+
+  @include q.phone {
+    width: 100%;
+    gap: 0.5rem;
+  }
+}

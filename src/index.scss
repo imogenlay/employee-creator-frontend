@@ -42,6 +42,10 @@ body,
   background-color: g.$clr-background;
 }
 
+input {
+  width: 10px;
+}
+
 input,
 button {
   border: 1px solid g.$clr-accent;
@@ -58,11 +62,27 @@ button {
   color: white;
   font-weight: 500;
   cursor: pointer;
+  min-width: 6rem;
   transition: background-color 200ms ease;
 
   &:hover {
     border-color: g.$clr-accent-light;
     background-color: g.$clr-accent-light;
+  }
+
+  &:disabled {
+    background-color: g.$clr-grey-2;
+    border-color: g.$clr-grey-2;
+    cursor: default;
+  }
+
+  &.delete {
+    background-color: g.$clr-red;
+    border-color: g.$clr-red;
+    &:hover {
+      background-color: g.$clr-red-light;
+      border-color: g.$clr-red-light;
+    }
   }
 }
 

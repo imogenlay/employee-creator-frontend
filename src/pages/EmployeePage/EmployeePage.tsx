@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import {
   getEmployee,
   type EmployeeResponse,
@@ -6,10 +6,12 @@ import {
 import { useEffect, useState } from "react";
 import classes from "./EmployeePage.module.scss";
 import { formatDate } from "../../utils/date";
+import { PAGE_HOME, PAGE_UPDATE_PREFIX } from "../../services/const";
 
 export default function EmployeePage() {
   const [employee, setEmployee] = useState<EmployeeResponse | null>();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id)
@@ -17,6 +19,13 @@ export default function EmployeePage() {
         setEmployee(response);
       });
   }, []);
+
+  const goToUpdate = () => {
+    navigate(PAGE_UPDATE_PREFIX + "/" + id);
+  };
+  const onDelete = () => {
+    navigate(PAGE_HOME);
+  };
 
   return (
     <div>
@@ -44,6 +53,13 @@ export default function EmployeePage() {
             <b>End Date:</b>
             <p>{formatDate(employee.endDate)}</p>
           </div>
+          <hr />
+          <button className={classes.button} onClick={goToUpdate}>
+            Edit
+          </button>
+          <button className={classes.button + " delete"} onClick={onDelete}>
+            Delete
+          </button>
         </>
       )}
     </div>

@@ -33,7 +33,7 @@ export default function UpdateEmployeePage() {
     employee && (
       <>
         <h2>
-          Edit {employee.firstName} {employee.middleName} {employee.lastName}
+          Update {employee.firstName} {employee.middleName} {employee.lastName}
         </h2>
         <hr />
         <EmployeeForm

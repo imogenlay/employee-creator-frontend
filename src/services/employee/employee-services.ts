@@ -1,6 +1,6 @@
 import type { EmployeeDto } from "../../utils/schema";
 import type { Sort } from "../const";
-import { get, create, QueryParams, update } from "../fetcher";
+import { get, create, QueryParams, update, remove } from "../fetcher";
 
 export type EmployeeResponse = {
   id: number;
@@ -80,4 +80,8 @@ export const updateEmployee = (
   employee: EmployeeDto,
 ): Promise<EmployeeResponse> => {
   return update<EmployeeResponse>("/employees/" + id, employee);
+};
+
+export const deleteEmployee = (id: string) => {
+  return remove("/employees/" + id);
 };

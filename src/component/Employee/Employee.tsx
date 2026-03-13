@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router";
-import type { EmployeeResponse } from "../../services/employee/employee-services";
+import { type EmployeeResponse } from "../../services/employee/employee-services";
 import { getDateDifference } from "../../utils/date";
 import classes from "./Employee.module.scss";
 import { PAGE_EMPLOYEE_PREFIX, PAGE_UPDATE_PREFIX } from "../../services/const";
 
 interface EmployeeProps {
   employee: EmployeeResponse;
+  onDelete: (id: number) => void;
 }
 
-export default function Employee({ employee }: EmployeeProps) {
+export default function Employee({ employee, onDelete }: EmployeeProps) {
   const navigate = useNavigate();
-  const goToEdit = () => {
+  const goToUpdate = () => {
     navigate(PAGE_UPDATE_PREFIX + "/" + employee.id);
   };
   const goToProfile = () => {
@@ -21,7 +22,7 @@ export default function Employee({ employee }: EmployeeProps) {
     <div className={classes.block}>
       <div className={classes.left}>
         <h3>
-          {employee.firstName} {employee.middleName} {employee.lastName}
+          {employee.lastName}, {employee.firstName} {employee.middleName}
         </h3>
         <p className={classes.email}>{employee.email}</p>
         <p>
@@ -33,7 +34,11 @@ export default function Employee({ employee }: EmployeeProps) {
 
       <div className={classes.right}>
         <button onClick={goToProfile}>Profile</button>
-        <button onClick={goToEdit}>Edit</button>
+        <button onClick={goToUpdate}>Edit</button>
+        <button disabled>Calendar</button>
+        <button className="delete" onClick={() => onDelete(employee.id)}>
+          Delete
+        </button>
       </div>
     </div>
   );

@@ -1,0 +1,46 @@
+@use "../../scss/global" as g;
+@use "../../scss/queries" as q;
+@use "../../scss/mixins";
+
+.triangle {
+  width: 3rem;
+  height: 3rem;
+  animation:
+    fadeIn 500ms ease-in-out 1,
+    spin 2s linear infinite;
+  align-self: center;
+  transform-origin: 50% 65%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  17% {
+    transform: rotate(0deg);
+  }
+  33% {
+    transform: rotate(120deg);
+  }
+  50% {
+    transform: rotate(120deg);
+  }
+  67% {
+    transform: rotate(240deg);
+  }
+  83% {
+    transform: rotate(240deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

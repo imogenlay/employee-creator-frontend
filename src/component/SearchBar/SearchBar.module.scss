@@ -4,9 +4,10 @@
 
 .form {
   @include mixins.flex(row, flex-start, center, 0.5rem);
+  flex: 1;
 
   input {
     min-width: none;
-    flex: 0.5;
+    flex: 1;
   }
 }

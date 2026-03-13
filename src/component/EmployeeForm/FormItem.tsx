@@ -5,8 +5,10 @@ interface FormItemProps {
   field: string;
   name?: string;
   type?: string;
-  value: string | number;
   checked?: boolean;
+  min?: string;
+  max?: string;
+  value: string | number;
   error: string | undefined;
   setField: (
     field: string,
@@ -22,6 +24,8 @@ export default function FormItem({
   type,
   value,
   checked,
+  min,
+  max,
   error,
   setField,
   children,
@@ -39,6 +43,8 @@ export default function FormItem({
             type={type}
             value={value}
             checked={checked}
+            min={min}
+            max={max}
             onChange={(e) => setField(field, e)}
           />
           {children}

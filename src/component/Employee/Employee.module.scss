@@ -19,25 +19,12 @@
 }
 
 .right {
-  @include mixins.flex(column, flex-start, flex-start, 0.5rem);
-  @include q.phone {
-    @include mixins.flex(row, flex-start, flex-start, 0.5rem);
-  }
-
-  button {
-    min-width: 6rem;
-  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
 }
 
 .email {
   font-size: 0.75rem;
   color: g.$clr-grey-5;
-}
-
-.hgroup {
-  padding: 0.5rem var(--inset);
-  background: white;
-
-  @include mixins.bg();
-  @include mixins.flex(row, flex-start, center, 0);
 }

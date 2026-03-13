@@ -45,14 +45,14 @@ export function create<T>(endpoint: string, body: any) {
 
 export function update<T>(endpoint: string, body: any) {
   return fetcher<T>(endpoint, {
-    method: "PUT",
+    method: "PATCH",
     body: JSON.stringify(body),
     headers: { "Content-Type": "application/json" },
   });
 }
 
-export function remove<T>(endpoint: string, queryParams: QueryParams) {
-  return fetcher<T>(endpoint, { method: "DELETE", queryParams });
+export function remove<T>(endpoint: string) {
+  return fetcher<T>(endpoint, { method: "DELETE" });
 }
 
 export type FetchOptions = {
