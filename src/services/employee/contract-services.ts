@@ -1,4 +1,5 @@
 import type { CreateContractDto } from "../../utils/schema";
+import type { Sort } from "../const";
 import { create, get, QueryParams, update } from "../fetcher";
 
 export type ContractResponse = {
@@ -7,9 +8,9 @@ export type ContractResponse = {
   isFullTime: boolean;
 };
 
-export const getContracts = (): Promise<ContractResponse[]> => {
+export const getContracts = (sort: Sort): Promise<ContractResponse[]> => {
   const requestParams: QueryParams = new QueryParams();
-  requestParams.add("order", "ASC");
+  requestParams.add("order", sort);
   requestParams.add("sortBy", "id");
   return get<ContractResponse[]>("/contracts", requestParams);
 };

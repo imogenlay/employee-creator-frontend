@@ -7,6 +7,8 @@ import {
 import Contract from "../Contract/Contract";
 import type { LoadStatus, Sort } from "../../services/const";
 import LoadingTriangle from "../LoadingTriangle/LoadingTriangle";
+import Button from "../Button/Button";
+import classes from "./ContractList.module.scss";
 
 interface ContractListProps {
   refreshKey: number;
@@ -24,13 +26,13 @@ export default function ContractList({
 
   useEffect(() => {
     setStatus("LOADING");
-    getContracts()
+    getContracts(sort)
       .then((data) => {
         setContracts(data);
         setStatus("SUCCESS");
       })
       .catch(() => setStatus("FAILURE"));
-  }, [refreshKey]);
+  }, [refreshKey, sort]);
 
   const onUpdate = (
     contractId: number,
@@ -48,15 +50,25 @@ export default function ContractList({
     }).then(refresh);
   };
 
+  const toggleSort = () => {
+    if (sort === "ASC") setSort("DESC");
+    else setSort("ASC");
+  };
+
   return (
     <>
-      {status === "LOADING" && <LoadingTriangle />}
+      <div className={classes.filters}>
+        <Button className={classes.wide_button} onClick={toggleSort}>
+          {sort === "ASC" ? "Oldest - Newest" : "Newest - Oldest"}
+        </Button>
+        {status === "LOADING" && <LoadingTriangle />}
+      </div>
+
       {status === "FAILURE" && <p>Could not load contracts.</p>}
       {contracts &&
         status === "SUCCESS" &&
         contracts.map((contract: ContractResponse) => {
           const disabledSelect = () => {
-            console.log("hi", contract.id);
             setEditable(contract.id);
           };
           return (
