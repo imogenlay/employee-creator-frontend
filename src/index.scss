@@ -42,50 +42,6 @@ body,
   background-color: g.$clr-background;
 }
 
-input {
-  width: 10px;
-}
-
-input,
-button {
-  border: 1px solid g.$clr-accent;
-  padding: 0.25rem 0.5rem;
-  border-radius: 10px;
-
-  &.error:not(:focus) {
-    border: 1px solid g.$clr-red;
-  }
-}
-
-button {
-  background-color: g.$clr-accent;
-  color: white;
-  font-weight: 500;
-  cursor: pointer;
-  min-width: 6rem;
-  transition: background-color 200ms ease;
-
-  &:hover {
-    border-color: g.$clr-accent-light;
-    background-color: g.$clr-accent-light;
-  }
-
-  &:disabled {
-    background-color: g.$clr-grey-2;
-    border-color: g.$clr-grey-2;
-    cursor: default;
-  }
-
-  &.delete {
-    background-color: g.$clr-red;
-    border-color: g.$clr-red;
-    &:hover {
-      background-color: g.$clr-red-light;
-      border-color: g.$clr-red-light;
-    }
-  }
-}
-
 h1 {
   flex: 1;
   font-weight: 600;
@@ -118,4 +74,19 @@ hr {
   border: none;
   background-color: g.$clr-accent-light;
   margin: 0.5rem 0 1rem 0;
+}
+
+b {
+  font-weight: 600;
+}
+
+input {
+  width: 10px;
+  border: 1px solid g.$clr-accent;
+  padding: 0.25rem 0.5rem;
+  border-radius: 10px;
+
+  &.error:not(:focus) {
+    border: 1px solid g.$clr-red;
+  }
 }

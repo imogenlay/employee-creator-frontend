@@ -8,6 +8,10 @@
   @include mixins.flex(row, flex-start, center, 1rem);
 }
 
+.numbering {
+  min-width: 2rem;
+}
+
 .contract_name {
   flex: 1;
 }

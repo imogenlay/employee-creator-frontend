@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import classes from "./EmployeePage.module.scss";
 import { formatDate } from "../../utils/date";
 import { PAGE_HOME, PAGE_UPDATE_PREFIX } from "../../services/const";
+import Button from "../../component/Button/Button";
 
 export default function EmployeePage() {
   const [employee, setEmployee] = useState<EmployeeResponse | null>();
@@ -54,12 +55,12 @@ export default function EmployeePage() {
             <p>{formatDate(employee.endDate)}</p>
           </div>
           <hr />
-          <button className={classes.button} onClick={goToUpdate}>
+          <Button className={classes.button} onClick={goToUpdate}>
             Edit
-          </button>
-          <button className={classes.button + " delete"} onClick={onDelete}>
+          </Button>
+          <Button className={classes.button} mode="DELETE" onClick={onDelete}>
             Delete
-          </button>
+          </Button>
         </>
       )}
     </div>

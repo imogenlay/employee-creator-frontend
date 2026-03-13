@@ -22,6 +22,9 @@ export default function AllContractsPage() {
   }, []);
   return (
     <>
+      <h2>Create New Contract</h2>
+      <hr />
+      <p>Create NEW</p>
       <h2>Update Contracts</h2>
       <hr />
       {status === "LOADING" && <LoadingTriangle />}
@@ -31,7 +34,6 @@ export default function AllContractsPage() {
           {contracts.map((contract: ContractResponse) => (
             <Contract key={contract.id} contract={contract} />
           ))}
-          <hr />
         </>
       )}
     </>

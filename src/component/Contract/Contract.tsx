@@ -1,4 +1,5 @@
 import type { ContractResponse } from "../../services/employee/contract-services";
+import Button from "../Button/Button";
 import classes from "./Contract.module.scss";
 
 interface ContractProps {
@@ -8,7 +9,7 @@ interface ContractProps {
 export default function Contract({ contract }: ContractProps) {
   return (
     <div className={classes.contract}>
-      <p>{contract.id}.</p>
+      <b className={classes.numbering}>{contract.id}.</b>
       <input value={contract.name} className={classes.contract_name} />
       <label>
         <input
@@ -18,7 +19,7 @@ export default function Contract({ contract }: ContractProps) {
         />
         Full Time
       </label>
-      <button>Update</button>
+      <Button>Update</Button>
     </div>
   );
 }

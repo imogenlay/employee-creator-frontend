@@ -4,6 +4,7 @@ import SearchBar from "../../component/SearchBar/SearchBar";
 import EmployeeList from "../../component/EmployeeList/EmployeeList";
 import type { Sort } from "../../services/const";
 import classes from "./AllEmployeesPage.module.scss";
+import Button from "../../component/Button/Button";
 
 export default function AllEmployeesPage() {
   const [namesFilter, setNamesFilter] = useState<string[]>([]);
@@ -32,9 +33,9 @@ export default function AllEmployeesPage() {
       <hr />
       <div className={classes.filter_area}>
         <SearchBar text="Search" onSearch={onSearch} />
-        <button onClick={toggleSort}>
+        <Button onClick={toggleSort}>
           Sort {sortFilter === "ASC" ? "A-Z" : "Z-A"}
-        </button>
+        </Button>
       </div>
       <EmployeeList searchQueryParams={searchQueryParams} />
     </>

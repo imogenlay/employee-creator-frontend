@@ -3,6 +3,7 @@ import { type EmployeeResponse } from "../../services/employee/employee-services
 import { getDateDifference } from "../../utils/date";
 import classes from "./Employee.module.scss";
 import { PAGE_EMPLOYEE_PREFIX, PAGE_UPDATE_PREFIX } from "../../services/const";
+import Button from "../Button/Button";
 
 interface EmployeeProps {
   employee: EmployeeResponse;
@@ -33,12 +34,12 @@ export default function Employee({ employee, onDelete }: EmployeeProps) {
       </div>
 
       <div className={classes.right}>
-        <button onClick={goToProfile}>Profile</button>
-        <button onClick={goToUpdate}>Edit</button>
-        <button disabled>Calendar</button>
-        <button className="delete" onClick={() => onDelete(employee.id)}>
+        <Button onClick={goToProfile}>Profile</Button>
+        <Button onClick={goToUpdate}>Edit</Button>
+        <Button mode="DISABLED">Calendar</Button>
+        <Button mode="DELETE" onClick={() => onDelete(employee.id)}>
           Delete
-        </button>
+        </Button>
       </div>
     </div>
   );

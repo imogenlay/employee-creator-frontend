@@ -11,6 +11,7 @@ import {
   getContracts,
   type ContractResponse,
 } from "../../services/employee/contract-services";
+import Button from "../Button/Button";
 
 type FormFieldErrors = Partial<Record<keyof FormFields, string>>;
 
@@ -158,9 +159,9 @@ export default function EmployeeForm({
         setField={setField}
       />
 
-      <button className={classes.button} type="submit">
+      <Button className={classes.button} type="submit">
         {buttonText}
-      </button>
+      </Button>
     </form>
   );
 }

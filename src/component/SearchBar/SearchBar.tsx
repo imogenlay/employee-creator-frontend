@@ -1,5 +1,6 @@
 import { useState } from "react";
 import classes from "./SearchBar.module.scss";
+import Button from "../Button/Button";
 
 interface SearchBarProps {
   text: string;
@@ -23,7 +24,7 @@ export default function SearchBar({
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <button>{text}</button>
+      <Button>{text}</Button>
     </form>
   );
 }

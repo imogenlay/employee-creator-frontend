@@ -1,0 +1,42 @@
+@use "../../scss/global" as g;
+@use "../../scss/queries" as q;
+@use "../../scss/mixins";
+
+.button {
+  min-width: 6rem;
+  padding: 0.25rem 0.5rem;
+
+  border: 1px solid g.$clr-accent;
+  border-radius: 10px;
+
+  cursor: pointer;
+  color: white;
+  font-weight: 500;
+
+  background-color: g.$clr-accent;
+  transition: background-color 200ms ease;
+
+  /*&.error:not(:focus) {
+    border: 1px solid g.$clr-red;
+  }*/
+
+  &:hover {
+    border-color: g.$clr-accent-light;
+    background-color: g.$clr-accent-light;
+  }
+
+  &:disabled {
+    background-color: g.$clr-grey-2;
+    border-color: g.$clr-grey-2;
+    cursor: default;
+  }
+
+  &.delete {
+    background-color: g.$clr-red;
+    border-color: g.$clr-red;
+    &:hover {
+      background-color: g.$clr-red-light;
+      border-color: g.$clr-red-light;
+    }
+  }
+}
