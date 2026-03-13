@@ -70,4 +70,13 @@ export const createEmployeeSchema = z
     { message: "End date must be after start date", path: ["endDate"] },
   );
 
+export const createContractSchema = z.object({
+  name: z
+    .string()
+    .min(1, "Name is required")
+    .max(100, "Name must be <= 100 characters"),
+  isFullTime: z.boolean(),
+});
+
 export type EmployeeDto = z.infer<typeof createEmployeeSchema>;
+export type CreateContractDto = z.infer<typeof createContractSchema>;

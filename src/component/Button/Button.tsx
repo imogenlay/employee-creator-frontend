@@ -17,7 +17,7 @@ export default function Button({
   onClick,
   children,
 }: ButtonProps) {
-  const combinedClasses = `${classes.button} ${mode === "DELETE" ? classes.delete : ""} ${className} `;
+  const combinedClasses = `${classes.button} ${mode === "DELETE" ? classes.delete : ""} ${className}`;
   return (
     <button
       className={combinedClasses}

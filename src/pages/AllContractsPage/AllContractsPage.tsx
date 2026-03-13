@@ -1,41 +1,38 @@
-import { useEffect, useState } from "react";
-import type { LoadStatus } from "../../services/const";
-import {
-  getContracts,
-  type ContractResponse,
-} from "../../services/employee/contract-services";
-import LoadingTriangle from "../../component/LoadingTriangle/LoadingTriangle";
+import { useState } from "react";
+import { createContract } from "../../services/employee/contract-services";
 import Contract from "../../component/Contract/Contract";
+import classes from "./AllContractsPage.module.scss";
+import ContractList from "../../component/ContractList/ContractList";
 
 export default function AllContractsPage() {
-  const [contracts, setContracts] = useState<ContractResponse[] | null>(null);
-  const [status, setStatus] = useState<LoadStatus>("PENDING");
+  const [refreshKey, setRefreshKey] = useState(0);
+  const refresh = () => setRefreshKey((k) => k + 1);
 
-  useEffect(() => {
-    setStatus("LOADING");
-    getContracts()
-      .then((data) => {
-        setContracts(data);
-        setStatus("SUCCESS");
-      })
-      .catch(() => setStatus("FAILURE"));
-  }, []);
+  const onCreate = (
+    _contractId: number,
+    newName: string,
+    newIsFullTime: boolean,
+  ) => {
+    createContract({
+      name: newName,
+      isFullTime: newIsFullTime,
+    }).then(refresh);
+  };
+
   return (
     <>
       <h2>Create New Contract</h2>
       <hr />
-      <p>Create NEW</p>
+      <Contract
+        contract={{ id: 0, name: "", isFullTime: false }}
+        onSubmit={onCreate}
+      >
+        Create
+      </Contract>
+      <div className={classes.break} />
       <h2>Update Contracts</h2>
       <hr />
-      {status === "LOADING" && <LoadingTriangle />}
-      {status === "FAILURE" && <p>Could not load contracts.</p>}
-      {contracts && status === "SUCCESS" && (
-        <>
-          {contracts.map((contract: ContractResponse) => (
-            <Contract key={contract.id} contract={contract} />
-          ))}
-        </>
-      )}
+      <ContractList refreshKey={refreshKey} refresh={refresh} />
     </>
   );
 }

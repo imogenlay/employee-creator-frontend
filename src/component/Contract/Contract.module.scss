@@ -10,6 +10,10 @@
 
 .numbering {
   min-width: 2rem;
+
+  &.disabled {
+    color: g.$clr-grey-3;
+  }
 }
 
 .contract_name {
@@ -18,4 +22,8 @@
 
 .contract_full_time {
   margin-right: 0.5rem;
+}
+
+.wide_button {
+  min-width: 13rem;
 }

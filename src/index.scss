@@ -87,6 +87,12 @@ input {
   border-radius: 10px;
 
   &.error:not(:focus) {
-    border: 1px solid g.$clr-red;
+    border-color: g.$clr-red;
+  }
+
+  &:disabled,
+  &:read-only {
+    border-color: g.$clr-grey-3;
+    color: g.$clr-grey-3;
   }
 }
