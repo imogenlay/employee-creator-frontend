@@ -33,7 +33,7 @@ export function get<T>(endpoint: string, queryParams?: QueryParams) {
   return fetcher<T>(endpoint, options);
 }
 
-export function create<T>(endpoint: string, body: any) {
+export function post<T>(endpoint: string, body: any) {
   return fetcher<T>(endpoint, {
     method: "POST",
     body: JSON.stringify(body),

@@ -7,6 +7,7 @@ export const PAGE_UPDATE: string = PAGE_UPDATE_PREFIX + "/:id";
 export const PAGE_EMPLOYEE: string = PAGE_EMPLOYEE_PREFIX + "/:id";
 export const PAGE_CONTRACT: string = "/contract";
 export const PAGE_CALENDAR: string = "/calendar";
+export const PAGE_CHAT: string = "/chat";
 
 // Fetch
 export const FETCH_PENDING = 0;

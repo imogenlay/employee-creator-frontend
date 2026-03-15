@@ -8,6 +8,7 @@ import Frame from "./component/Frame/Frame";
 import "./index.scss";
 import {
   PAGE_CALENDAR,
+  PAGE_CHAT,
   PAGE_CONTRACT,
   PAGE_CREATE,
   PAGE_EMPLOYEE,
@@ -15,6 +16,7 @@ import {
   PAGE_UPDATE,
 } from "./services/const";
 import AllContractsPage from "./pages/AllContractsPage/AllContractsPage";
+import ChatPage from "./pages/ChatPage/ChatPage";
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
           <Route path={PAGE_EMPLOYEE} element={<EmployeePage />} />
           <Route path={PAGE_CONTRACT} element={<AllContractsPage />} />
           <Route path={PAGE_CALENDAR} element={<CalendarPage />} />
+          <Route path={PAGE_CHAT} element={<ChatPage />} />
         </Routes>
       </Frame>
     </BrowserRouter>

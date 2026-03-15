@@ -1,0 +1,17 @@
+@use "../../scss/global" as g;
+@use "../../scss/queries" as q;
+@use "../../scss/mixins";
+
+.normal {
+  display: inline;
+}
+
+.quote {
+  display: inline-block;
+
+  background-color: color-mix(in srgb, currentColor 10%, transparent);
+  border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+  border-radius: 4px;
+  font-family: monospace;
+  line-height: 1.35;
+}

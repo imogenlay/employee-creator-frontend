@@ -1,6 +1,6 @@
-import type { CreateContractDto } from "../../utils/schema";
-import type { Sort } from "../const";
-import { create, get, QueryParams, update } from "../fetcher";
+import type { CreateContractDto } from "../utils/schema";
+import type { Sort } from "./const";
+import { post, get, QueryParams, update } from "./fetcher";
 
 export type ContractResponse = {
   id: number;
@@ -18,7 +18,7 @@ export const getContracts = (sort: Sort): Promise<ContractResponse[]> => {
 export const createContract = (
   contract: CreateContractDto,
 ): Promise<ContractResponse> => {
-  return create<ContractResponse>("/contracts", contract);
+  return post<ContractResponse>("/contracts", contract);
 };
 
 export const updateContract = (

@@ -20,13 +20,13 @@
 
   overflow-x: visible;
   scroll-behavior: smooth;
-
-  color: g.$clr-grey-8;
 }
 
 html {
   width: 100vw;
   min-height: 100%;
+
+  color: g.$clr-grey-8;
 }
 
 :root {
@@ -76,7 +76,8 @@ hr {
   margin: 0.5rem 0 1rem 0;
 }
 
-b {
+b,
+strong {
   font-weight: 600;
 }
 

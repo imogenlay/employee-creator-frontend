@@ -4,7 +4,7 @@ import { PAGE_EMPLOYEE_PREFIX } from "../../services/const";
 import {
   createEmployee,
   type EmployeeResponse,
-} from "../../services/employee/employee-services";
+} from "../../services/employee-services";
 import type { EmployeeDto } from "../../utils/schema";
 
 export default function CreateEmployeePage() {

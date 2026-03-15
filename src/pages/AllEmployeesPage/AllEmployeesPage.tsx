@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { type EmployeeQueryParams } from "../../services/employee/employee-services";
+import { type EmployeeQueryParams } from "../../services/employee-services";
 import SearchBar from "../../component/SearchBar/SearchBar";
 import EmployeeList from "../../component/EmployeeList/EmployeeList";
 import type { Sort } from "../../services/const";

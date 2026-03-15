@@ -4,7 +4,7 @@ import {
   getEmployees,
   type EmployeeQueryParams,
   type EmployeeResponse,
-} from "../../services/employee/employee-services";
+} from "../../services/employee-services";
 import Employee from "../Employee/Employee";
 import classes from "./EmployeeList.module.scss";
 import { type LoadStatus } from "../../services/const";

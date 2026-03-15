@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createContract } from "../../services/employee/contract-services";
+import { createContract } from "../../services/contract-services";
 import Contract from "../../component/Contract/Contract";
 import classes from "./AllContractsPage.module.scss";
 import ContractList from "../../component/ContractList/ContractList";

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { type EmployeeResponse } from "../../services/employee/employee-services";
+import { type EmployeeResponse } from "../../services/employee-services";
 import { getDateDifference } from "../../utils/date";
 import classes from "./Employee.module.scss";
 import { PAGE_EMPLOYEE_PREFIX, PAGE_UPDATE_PREFIX } from "../../services/const";

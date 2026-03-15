@@ -16,10 +16,6 @@
   background-color: g.$clr-accent;
   transition: background-color 200ms ease;
 
-  /*&.error:not(:focus) {
-    border: 1px solid g.$clr-red;
-  }*/
-
   &:hover {
     border-color: g.$clr-accent-light;
     background-color: g.$clr-accent-light;

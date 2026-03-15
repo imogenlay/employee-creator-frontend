@@ -16,5 +16,6 @@
   border-radius: 10px;
   min-height: calc(100vh - 8rem);
 
+  @include mixins.flex(column, flex-start, stretch, 0);
   @include mixins.bg();
 }

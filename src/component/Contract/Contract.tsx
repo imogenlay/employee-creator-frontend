@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ContractResponse } from "../../services/employee/contract-services";
+import type { ContractResponse } from "../../services/contract-services";
 import Button from "../Button/Button";
 import classes from "./Contract.module.scss";
 

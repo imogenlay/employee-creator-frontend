@@ -1,6 +1,6 @@
-import type { EmployeeDto } from "../../utils/schema";
-import type { Sort } from "../const";
-import { get, create, QueryParams, update, remove } from "../fetcher";
+import type { EmployeeDto } from "../utils/schema";
+import type { Sort } from "./const";
+import { get, post, QueryParams, update, remove } from "./fetcher";
 
 export type EmployeeResponse = {
   id: number;
@@ -72,7 +72,7 @@ export const getEmployees = (
 export const createEmployee = (
   employee: EmployeeDto,
 ): Promise<EmployeeResponse> => {
-  return create<EmployeeResponse>("/employees", employee);
+  return post<EmployeeResponse>("/employees", employee);
 };
 
 export const updateEmployee = (

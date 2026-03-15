@@ -5,7 +5,7 @@ import {
   responseToFormFields,
   updateEmployee,
   type EmployeeResponse,
-} from "../../services/employee/employee-services";
+} from "../../services/employee-services";
 import type { EmployeeDto } from "../../utils/schema";
 import { useEffect, useState } from "react";
 import { PAGE_EMPLOYEE_PREFIX } from "../../services/const";

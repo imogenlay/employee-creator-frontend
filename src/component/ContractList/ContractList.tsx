@@ -3,7 +3,7 @@ import {
   getContracts,
   updateContract,
   type ContractResponse,
-} from "../../services/employee/contract-services";
+} from "../../services/contract-services";
 import Contract from "../Contract/Contract";
 import type { LoadStatus, Sort } from "../../services/const";
 import LoadingTriangle from "../LoadingTriangle/LoadingTriangle";

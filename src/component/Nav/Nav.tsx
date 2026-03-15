@@ -1,4 +1,9 @@
-import { PAGE_CONTRACT, PAGE_CREATE, PAGE_HOME } from "../../services/const";
+import {
+  PAGE_CHAT,
+  PAGE_CONTRACT,
+  PAGE_CREATE,
+  PAGE_HOME,
+} from "../../services/const";
 import { Link, useLocation } from "react-router";
 import classes from "./Nav.module.scss";
 
@@ -14,6 +19,7 @@ export default function Nav() {
     { to: PAGE_HOME, text: "Home" },
     { to: PAGE_CREATE, text: "Create" },
     { to: PAGE_CONTRACT, text: "Contracts" },
+    { to: PAGE_CHAT, text: "Chat" },
     /* { to: PAGE_CALENDAR, text: "Calendar" },*/
   ];
 

@@ -1,16 +1,15 @@
 import classes from "./EmployeeForm.module.scss";
-
 import { useEffect, useState } from "react";
 import { createEmployeeSchema, type EmployeeDto } from "../../utils/schema";
 import FormItem from "./FormItem";
 import {
   EMPTY_EMPLOYEE_FORM,
   type FormFields,
-} from "../../services/employee/employee-services";
+} from "../../services/employee-services";
 import {
   getContracts,
   type ContractResponse,
-} from "../../services/employee/contract-services";
+} from "../../services/contract-services";
 import Button from "../Button/Button";
 
 type FormFieldErrors = Partial<Record<keyof FormFields, string>>;
@@ -31,10 +30,7 @@ export default function EmployeeForm({
   const [contracts, setContracts] = useState<ContractResponse[] | null>(null);
 
   useEffect(() => {
-    getContracts().then((response: ContractResponse[]) => {
-      response.forEach((a) => {
-        console.log(a.name, a.id);
-      });
+    getContracts("ASC").then((response: ContractResponse[]) => {
       setContracts(response);
       if (!form.contractId)
         setForm((prev) => ({ ...prev, contractId: String(response[0].id) }));

@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router";
 import {
   getEmployee,
   type EmployeeResponse,
-} from "../../services/employee/employee-services";
+} from "../../services/employee-services";
 import { useEffect, useState } from "react";
 import classes from "./EmployeePage.module.scss";
 import { formatDate } from "../../utils/date";
