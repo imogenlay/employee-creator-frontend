@@ -7,6 +7,7 @@ export function formatDate(date: string): string {
 }
 
 export function getDateDifference(date1: string, date2: string): string {
+  if (!date1 || !date2) return "";
   const d1 = new Date(date1);
   const d2 = new Date(date2);
 

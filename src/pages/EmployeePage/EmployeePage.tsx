@@ -1,13 +1,13 @@
-import { useNavigate, useParams } from "react-router";
 import {
   getEmployee,
   type EmployeeResponse,
 } from "../../services/employee-services";
+import { useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
-import classes from "./EmployeePage.module.scss";
 import { formatDate } from "../../utils/date";
 import { PAGE_HOME, PAGE_UPDATE_PREFIX } from "../../services/const";
 import Button from "../../component/Button/Button";
+import classes from "./EmployeePage.module.scss";
 
 export default function EmployeePage() {
   const [employee, setEmployee] = useState<EmployeeResponse | null>();
@@ -28,6 +28,8 @@ export default function EmployeePage() {
     navigate(PAGE_HOME);
   };
 
+  const showEndDate = !!employee?.endDate;
+
   return (
     <div>
       {employee && (
@@ -41,8 +43,12 @@ export default function EmployeePage() {
           </div>
           <hr />
           <div className={classes.grid}>
-            <b>Mobile:</b>
-            <p>{employee.mobile}</p>
+            {employee.mobile && (
+              <>
+                <b>Mobile:</b>
+                <p>{employee.mobile}</p>
+              </>
+            )}
             <b>Address:</b>
             <p>{employee.address}</p>
             <b>Contract:</b>
@@ -51,8 +57,12 @@ export default function EmployeePage() {
             <p>{employee.hoursPerWeek}</p>
             <b>Start Date:</b>
             <p>{formatDate(employee.startDate)}</p>
-            <b>End Date:</b>
-            <p>{formatDate(employee.endDate)}</p>
+            {showEndDate && (
+              <>
+                <b>End Date:</b>
+                <p>{formatDate(employee.endDate)}</p>
+              </>
+            )}
           </div>
           <hr />
           <Button className={classes.button} onClick={goToUpdate}>

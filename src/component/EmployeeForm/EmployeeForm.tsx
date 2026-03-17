@@ -49,7 +49,11 @@ export default function EmployeeForm({
   const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
 
-    const result = createEmployeeSchema.safeParse(form);
+    console.log(form.endDate);
+    const result = createEmployeeSchema.safeParse({
+      ...form,
+      endDate: form.endDate ?? undefined,
+    });
 
     if (!result.success) {
       const fieldErrors: FormFieldErrors = {};

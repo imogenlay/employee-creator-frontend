@@ -19,6 +19,10 @@ export default function Employee({ employee, onDelete }: EmployeeProps) {
     navigate(PAGE_EMPLOYEE_PREFIX + "/" + employee.id);
   };
 
+  let employmentType = getDateDifference(employee.startDate, employee.endDate);
+  employmentType =
+    employee.contractName + (employmentType ? " - " + employmentType : "");
+
   return (
     <div className={classes.block}>
       <div className={classes.left}>
@@ -26,11 +30,7 @@ export default function Employee({ employee, onDelete }: EmployeeProps) {
           {employee.lastName}, {employee.firstName} {employee.middleName}
         </h3>
         <p className={classes.email}>{employee.email}</p>
-        <p>
-          {employee.contractName +
-            " - " +
-            getDateDifference(employee.startDate, employee.endDate)}
-        </p>
+        <p>{employmentType}</p>
       </div>
 
       <div className={classes.right}>

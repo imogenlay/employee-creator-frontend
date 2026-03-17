@@ -10,8 +10,16 @@ export default function BadMarkdown({ className, value }: BadMarkdownProps) {
     <p className={className}>
       {value.split("`").map((part: string, i: number) => {
         if (!part || i % 2 === 0)
-          return <span className={classes.normal}>{part}</span>;
-        return <span className={classes.quote}>{part}</span>;
+          return (
+            <span key={"n_" + part} className={classes.normal}>
+              {part}
+            </span>
+          );
+        return (
+          <span key={"q_" + part} className={classes.quote}>
+            {part}
+          </span>
+        );
       })}
     </p>
   );
